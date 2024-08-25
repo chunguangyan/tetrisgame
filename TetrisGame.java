@@ -15,12 +15,12 @@ public class TetrisGame extends JPanel implements ActionListener {
     private boolean isStarted = false;
     private boolean isPaused = false;
     private int numLinesRemoved = 0;
-    private int score = 0; // 添加得分系统
+    private int score = 0;
     private int curX = 0;
     private int curY = 0;
     private Shape curPiece;
     private final Shape.Tetrominoes[] board;
-    private JButton pauseButton; // 定义暂停按钮
+    private JButton pauseButton;
 
     public TetrisGame() {
         setFocusable(true);
@@ -31,7 +31,7 @@ public class TetrisGame extends JPanel implements ActionListener {
         clearBoard();
         addKeyListener(new TAdapter());
 
-        // 初始化暂停按钮
+        // Initialize pause button
         pauseButton = new JButton("Pause");
         pauseButton.addActionListener(e -> togglePause());
     }
@@ -44,7 +44,7 @@ public class TetrisGame extends JPanel implements ActionListener {
         isStarted = true;
         isFallingFinished = false;
         numLinesRemoved = 0;
-        score = 0; // 重置得分
+        score = 0;
         clearBoard();
 
         newPiece();
@@ -101,7 +101,7 @@ public class TetrisGame extends JPanel implements ActionListener {
             }
         }
 
-        // 绘制得分
+        // Draw score
         g.setColor(Color.WHITE);
         g.drawString("Score: " + score, 10, 20);
     }
@@ -207,7 +207,7 @@ public class TetrisGame extends JPanel implements ActionListener {
 
         if (numFullLines > 0) {
             numLinesRemoved += numFullLines;
-            score += numFullLines * 100; // 每行加 100 分
+            score += numFullLines * 100; // Increase score by 100 per line
             isFallingFinished = true;
             curPiece.setShape(Shape.Tetrominoes.NoShape);
             repaint();
@@ -281,7 +281,7 @@ public class TetrisGame extends JPanel implements ActionListener {
         TetrisGame game = new TetrisGame();
         frame.add(game, BorderLayout.CENTER);
 
-        // 添加暂停按钮到南部
+        // Add pause button to the south
         frame.add(game.pauseButton, BorderLayout.SOUTH);
 
         frame.setBounds(100, 100, 400, 800);
